@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects List</title>
+</head>
+<body>
+      <h1>The Project Portfolio</h1>
+      <ul>
+          {% for project in projects %}
+          <li>
+              <strong>{{project.Title}}</strong><br>
+              {{project.description}}<br>
+              <p>Progress : {{project.progress}}</p>
+              <p>Created at :{{project.Created_at}}</p>
+              <hr>
+          </li>
+          {% empty %}
+            <li>No products found in the database.</li>
+          {% endfor %}
+      </ul>
+</body>
+</html>
