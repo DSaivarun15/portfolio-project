@@ -1,9 +1,9 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import Project
 from .forms import ProjectForm
 
 def projects_list(request):
-    projects=Project.objects.all()
+    projects=Project.objects.filter(progress=100)
     context={'projects':projects}
     return render(request,'portfolio/index.html',context)
 
@@ -18,3 +18,7 @@ def create_project_view(request):
         form = ProjectForm()
 
     return render(request, 'portfolio/create_project.html', {'form': form})
+
+def project_detail_view(request, pk):
+    single_project=get_object_or_404(Project,pk=pk)
+    return render(request,'portfolio/detail.html',{'project':single_project})
